@@ -36,3 +36,24 @@ function playRound(playerSelection, computerSelection) {
             return `It was a draw`;
     }
 }
+
+function game() {
+    let playerPoints = 0;
+    let computerPoints = 0;
+    for (let i = 0, roundResult = ""; i < 5; i++) {
+        roundResult = playRound(prompt(), getComputerChoice());
+        if (roundResult.includes(`Win`)) {
+            playerPoints++;
+        } else if (roundResult.includes(`Lose`)) {
+            computerPoints++;
+        }
+        console.log(roundResult, playerPoints, computerPoints);
+    }
+    if (playerPoints > computerPoints) {
+        console.log(`** You won the game! **`);
+    } else if (playerPoints < computerPoints) {
+        console.log(`** You lost the game! **`);
+    } else {
+        console.log(`** It was a tie! **`);
+    }
+}
