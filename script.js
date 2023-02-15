@@ -33,7 +33,7 @@ function playRound(playerSelection, computerSelection) {
         case computer === "scissors" && player === "paper":
             return createRoundMessage("Lose", player, computer);
         default:
-            return `It was a draw`;
+            return `It's a draw!`;
     }
 }
 
