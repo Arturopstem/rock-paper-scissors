@@ -1,6 +1,7 @@
 :root {
   color-scheme: dark;
   box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 *,
 *::before,
@@ -8,4 +9,68 @@
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+}
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+#title {
+  text-align: center;
+  color: hsl(76, 100%, 50%);
+}
+.shapes-container {
+  margin: auto;
+  display: flex;
+  width: 500px;
+  height: 200px;
+  justify-content: space-around;
+  align-items: center;
+}
+.shape {
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(36, 100%, 50%);
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.shape:hover {
+  transform: scale(1.5);
+}
+.shape img {
+  width: 110px;
+}
+.btn {
+  background-color: hsl(264, 100%, 50%);
+  font-size: 20px;
+  width: 100%;
+  height: 2rem;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover {
+  color: hsl(168, 100%, 50%);
+}
+.btn:hover:active {
+  background-color: hsl(168, 100%, 50%);
+  color: hsl(264, 100%, 50%);
+}
+#round {
+  color: hsl(294, 100%, 50%);
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2ch;
+  font-weight: bold;
+}
+#result {
+  height: 4rem;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
 }

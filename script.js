@@ -37,23 +37,52 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  let playerPoints = 0;
-  let computerPoints = 0;
-  for (let i = 0, roundResult = ""; i < 5; i++) {
-    roundResult = playRound(prompt(), getComputerChoice());
-    if (roundResult.includes(`Win`)) {
-      playerPoints++;
-    } else if (roundResult.includes(`Lose`)) {
-      computerPoints++;
-    }
-    console.log(roundResult, playerPoints, computerPoints);
+function updateScore(msg) {
+  if (msg.includes(`Win`)) {
+    playerPoints++;
+  } else if (msg.includes(`Lose`)) {
+    computerPoints++;
   }
-  if (playerPoints > computerPoints) {
-    console.log(`** You won the game! **`);
-  } else if (playerPoints < computerPoints) {
-    console.log(`** You lost the game! **`);
-  } else {
-    console.log(`** It was a tie! **`);
+  displayRoundScore(msg);
+}
+
+function displayRoundScore(msg) {
+  const score = document.createElement("span");
+  score.textContent = `Player: ${playerPoints} - Computer: ${computerPoints}`;
+  const scoreMessage = document.createElement("span");
+  scoreMessage.textContent = `${msg}`;
+  round.textContent = "";
+  round.appendChild(score);
+  round.appendChild(scoreMessage);
+}
+
+function displayWinner() {
+  if (playerPoints === 5) {
+    result.textContent = "You won the game!";
+    result.style.color = "green";
+    playerPoints = 0;
+    computerPoints = 0;
+  } else if (computerPoints === 5) {
+    result.textContent = "You lost the game!";
+    result.style.color = "red";
+    playerPoints = 0;
+    computerPoints = 0;
   }
 }
+
+const buttons = document.querySelectorAll(".btn");
+const round = document.querySelector("#round");
+const result = document.querySelector("#result");
+let playerPoints = 0;
+let computerPoints = 0;
+buttons.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    console.dir(e.target);
+    if (playerPoints === 0 && computerPoints === 0) {
+      result.textContent = "";
+    }
+    const roundResult = playRound(e.target.innerText, getComputerChoice());
+    updateScore(roundResult);
+    displayWinner();
+  });
+});
