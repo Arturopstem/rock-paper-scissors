@@ -70,18 +70,18 @@ function displayWinner() {
   }
 }
 
-const buttons = document.querySelectorAll(".btn");
 const round = document.querySelector("#round");
 const result = document.querySelector("#result");
 let playerPoints = 0;
 let computerPoints = 0;
-buttons.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    console.dir(e.target);
+
+const shapes = document.querySelectorAll(".shape");
+shapes.forEach((shape) => {
+  shape.addEventListener("click", () => {
     if (playerPoints === 0 && computerPoints === 0) {
       result.textContent = "";
     }
-    const roundResult = playRound(e.target.innerText, getComputerChoice());
+    const roundResult = playRound(shape.innerText, getComputerChoice());
     updateScore(roundResult);
     displayWinner();
   });
